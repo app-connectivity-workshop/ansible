@@ -10,3 +10,4 @@ playbooks/user-data.yaml
 playbooks/user-info.yaml
 
 **/__pycache__
+.DS_Store
