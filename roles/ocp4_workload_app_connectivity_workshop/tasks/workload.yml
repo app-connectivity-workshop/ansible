@@ -1,4 +1,11 @@
 ---
+
+- name: Extract main_domain of AWS from r_openshift_subdomain
+  set_fact:
+    ocp4_workload_app_connectivity_workshop_main_domain: "{{ (r_openshift_subdomain.split('.') | reverse)[:3] | reverse | join('.')}}"
+
+- debug: msg="ocp4_workload_app_connectivity_workshop_main_domain -> {{ ocp4_workload_app_connectivity_workshop_main_domain}}"
+
 - name: AWS Route53 setup
   ansible.builtin.include_tasks: aws-setup.yml
 

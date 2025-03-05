@@ -6,6 +6,10 @@ num_users: 5
 
 ocp4_workload_app_connectivity_workshop_sub_domain_name: globex
 ocp4_workload_app_connectivity_workshop_main_domain: sandbox3032.opentlc.com
+ocp4_workload_app_connectivity_workshop_aws_managed_zone_region: eu-central-1
+ocp4_workload_app_connectivity_workshop_gateway_geo_code: GEO-EU
+ocp4_workload_app_connectivity_workshop_ingress_gateway_tls_issuer_email: info@acme.com
+
 # ------------------------------------------------
 # OpenShift Gitops
 # ------------------------------------------------
@@ -170,32 +174,23 @@ ocp4_workload_app_connectivity_workshop_openshift_gitops_ignore_differences: {}
 
 
 ocp4_workload_app_connectivity_workshop_gitops_repo: https://github.com/app-connectivity-workshop/helm.git
-# ------------------------------------------------
-# Kuadrant Operator
-# ------------------------------------------------
-
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_application_name: kuadrant-operator
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_application_namespace: kuadrant-system
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_gitops_repo_tag: rhcl
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_gitops_repo_path: platform/kuadrant-operator
-
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_operator_channel: stable
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_operator_install_plan_approval: Automatic
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_operator_starting_csv: ""
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_operator_name: kuadrant-operator
-ocp4_workload_app_connectivity_workshop_kuadrant_operator_catalogsource_image: quay.io/kuadrant/kuadrant-operator-catalog:v1.0.1
 
 # ------------------------------------------------
-# Kuadrant
+# RHCL Operator
 # ------------------------------------------------
 
-ocp4_workload_app_connectivity_workshop_kuadrant_applicationset_name: kuadrant
-ocp4_workload_app_connectivity_workshop_kuadrant_application_name: kuadrant
-ocp4_workload_app_connectivity_workshop_kuadrant_application_namespace: kuadrant-system
-ocp4_workload_app_connectivity_workshop_kuadrant_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
-ocp4_workload_app_connectivity_workshop_kuadrant_gitops_repo_tag: rhcl
-ocp4_workload_app_connectivity_workshop_kuadrant_gitops_repo_path: platform/kuadrant
+ocp4_workload_app_connectivity_workshop_rhcl_operator_application_name: rhcl-operator
+ocp4_workload_app_connectivity_workshop_rhcl_operator_application_namespace: kuadrant-system
+ocp4_workload_app_connectivity_workshop_rhcl_operator_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
+ocp4_workload_app_connectivity_workshop_rhcl_operator_gitops_repo_tag: main
+ocp4_workload_app_connectivity_workshop_rhcl_operator_gitops_repo_path: platform/rhcl-operator
+
+ocp4_workload_app_connectivity_workshop_rhcl_operator_operator_channel: 
+ocp4_workload_app_connectivity_workshop_rhcl_operator_operator_install_plan_approval: Automatic
+ocp4_workload_app_connectivity_workshop_rhcl_operator_operator_starting_csv: ""
+ocp4_workload_app_connectivity_workshop_rhcl_operator_operator_name: rhcl-operator
+ocp4_workload_app_connectivity_workshop_rhcl_operator_catalogsource: redhat-operators
+ocp4_workload_app_connectivity_workshop_rhcl_operator_catalogsource_namespace: openshift-marketplace
 
 # ------------------------------------------------
 # Sail Operator
@@ -204,7 +199,7 @@ ocp4_workload_app_connectivity_workshop_kuadrant_gitops_repo_path: platform/kuad
 ocp4_workload_app_connectivity_workshop_servicemesh_operator_application_name: servicemesh-operator
 ocp4_workload_app_connectivity_workshop_servicemesh_operator_application_namespace: gateway-system
 ocp4_workload_app_connectivity_workshop_servicemesh_operator_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
-ocp4_workload_app_connectivity_workshop_servicemesh_operator_gitops_repo_tag: rhcl
+ocp4_workload_app_connectivity_workshop_servicemesh_operator_gitops_repo_tag: main
 ocp4_workload_app_connectivity_workshop_servicemesh_operator_gitops_repo_path: platform/sail-operator
 
 ocp4_workload_app_connectivity_workshop_servicemesh_operator_operator_channel: 
@@ -221,8 +216,19 @@ ocp4_workload_app_connectivity_workshop_servicemesh_operator_catalogsource_names
 ocp4_workload_app_connectivity_workshop_istio_application_name: istio
 ocp4_workload_app_connectivity_workshop_istio_application_namespace: istio-system
 ocp4_workload_app_connectivity_workshop_istio_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
-ocp4_workload_app_connectivity_workshop_istio_gitops_repo_tag: rhcl
+ocp4_workload_app_connectivity_workshop_istio_gitops_repo_tag: main
 ocp4_workload_app_connectivity_workshop_istio_gitops_repo_path: platform/istio
+
+# ------------------------------------------------
+# Connectivity Link
+# ------------------------------------------------
+
+ocp4_workload_app_connectivity_workshop_kuadrant_application_name: kuadrant
+ocp4_workload_app_connectivity_workshop_kuadrant_application_namespace: kuadrant-system
+ocp4_workload_app_connectivity_workshop_kuadrant_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
+ocp4_workload_app_connectivity_workshop_kuadrant_gitops_repo_tag: main
+ocp4_workload_app_connectivity_workshop_kuadrant_gitops_repo_path: platform/kuadrant
+
 
 # ------------------------------------------------
 # Ingress Gateway
@@ -231,7 +237,7 @@ ocp4_workload_app_connectivity_workshop_istio_gitops_repo_path: platform/istio
 ocp4_workload_app_connectivity_workshop_ingress_gateway_application_name: ingress-gateway
 ocp4_workload_app_connectivity_workshop_ingress_gateway_application_namespace: ingress-gateway
 ocp4_workload_app_connectivity_workshop_ingress_gateway_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
-ocp4_workload_app_connectivity_workshop_ingress_gateway_gitops_repo_tag: rhcl
+ocp4_workload_app_connectivity_workshop_ingress_gateway_gitops_repo_tag: main
 ocp4_workload_app_connectivity_workshop_ingress_gateway_gitops_repo_path: platform/ingress-gateway
 ocp4_workload_app_connectivity_workshop_ingress_gateway_name: prod-web
 
@@ -246,7 +252,7 @@ ocp4_workload_app_connectivity_workshop_ingress_gateway_routing_strategy: loadba
 ocp4_workload_app_connectivity_workshop_observability_hub_application_name: observability-hub
 ocp4_workload_app_connectivity_workshop_observability_hub_application_namespace: monitoring
 ocp4_workload_app_connectivity_workshop_observability_hub_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
-ocp4_workload_app_connectivity_workshop_observability_hub_gitops_repo_tag: rhcl
+ocp4_workload_app_connectivity_workshop_observability_hub_gitops_repo_tag: main
 ocp4_workload_app_connectivity_workshop_observability_hub_gitops_repo_path: platform/observability-hub
 
 # ------------------------------------------------
@@ -256,7 +262,7 @@ ocp4_workload_app_connectivity_workshop_observability_hub_gitops_repo_path: plat
 ocp4_workload_app_connectivity_workshop_observability_worker_application_name: observability-worker
 ocp4_workload_app_connectivity_workshop_observability_worker_application_namespace: monitoring
 ocp4_workload_app_connectivity_workshop_observability_worker_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
-ocp4_workload_app_connectivity_workshop_observability_worker_gitops_repo_tag: rhcl
+ocp4_workload_app_connectivity_workshop_observability_worker_gitops_repo_tag: main
 ocp4_workload_app_connectivity_workshop_observability_worker_gitops_repo_path: platform/observability-worker
 
 
@@ -313,3 +319,19 @@ ocp4_workload_app_connectivity_workshop_argocd_namespace: openshift-gitops
 ocp4_workload_app_connectivity_workshop_argocd_local_cluster: local
 
 ocp4_workload_app_connectivity_workshop_gitops_infra_project: infra
+
+
+# ------------------------------------------------
+# Echo Api test app
+# ------------------------------------------------
+
+ocp4_workload_app_connectivity_workshop_echo_api_application_name: echo-api
+ocp4_workload_app_connectivity_workshop_echo_api_application_namespace: echo-api
+ocp4_workload_app_connectivity_workshop_echo_api_gitops_repo: "{{ ocp4_workload_app_connectivity_workshop_gitops_repo }}"
+ocp4_workload_app_connectivity_workshop_echo_api_gitops_repo_tag: main
+ocp4_workload_app_connectivity_workshop_echo_api_gitops_repo_path: developer/echo-api
+
+ocp4_workload_app_connectivity_workshop_echo_api_http_route_host: echo
+
+
+ocp4_workload_app_connectivity_workshop_monitoring_hub: true
