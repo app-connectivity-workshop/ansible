@@ -8,3 +8,4 @@
 - name: Setup secrets for Red Hat registry
   ansible.builtin.shell:
     cmd: oc create secret docker-registry wasm-plugin-pull-secret -n ingress-gateway --docker-server=registry.redhat.io  --docker-username="{{ rh_registry_username }}"  --docker-password={{ rh_registry_password }}
+  ignore_errors: true

@@ -4,6 +4,14 @@ silent: false
 guid: pew
 num_users: 5
 
+ocp4_workload_authentication_htpasswd_user_base: user
+ocp4_workload_authentication_htpasswd_user_count: 1
+ocp4_workload_authentication_htpasswd_user_password: openshift
+
+
+ocp4_workload_app_connectivity_workshop_user_count: "{{ ocp4_workload_authentication_htpasswd_user_count }}"
+ocp4_workload_app_connectivity_workshop_user_prefix: "{{ ocp4_workload_authentication_htpasswd_user_base }}"
+
 ocp4_workload_app_connectivity_workshop_sub_domain_name: globex
 ocp4_workload_app_connectivity_workshop_main_domain: sandbox3032.opentlc.com
 ocp4_workload_app_connectivity_workshop_aws_managed_zone_region: eu-central-1
@@ -174,6 +182,7 @@ ocp4_workload_app_connectivity_workshop_openshift_gitops_ignore_differences: {}
 
 
 ocp4_workload_app_connectivity_workshop_gitops_repo: https://github.com/app-connectivity-workshop/helm.git
+ocp4_workload_app_connectivity_workshop_gitops_repo_tag: main
 
 # ------------------------------------------------
 # RHCL Operator
@@ -335,3 +344,46 @@ ocp4_workload_app_connectivity_workshop_echo_api_http_route_host: echo
 
 
 ocp4_workload_app_connectivity_workshop_monitoring_hub: true
+
+
+
+
+# -------- operators ------
+
+ocp4_workload_app_connectivity_workshop_ossm_catalogsource_setup: true
+ocp4_workload_app_connectivity_workshop_ossm_catalogsource_image: quay.io/gpte-devops-automation/olm_snapshot_redhat_catalog
+ocp4_workload_app_connectivity_workshop_ossm_catalogsource_tag: ""
+
+
+
+# Jaeger
+ocp4_workload_app_connectivity_workshop_ossm_jaeger_channel: stable
+ocp4_workload_app_connectivity_workshop_ossm_jaeger_startingcsv: ""
+
+# Kiali
+ocp4_workload_app_connectivity_workshop_kiali_gitops_repo_path: platform/kiali
+
+ocp4_workload_app_connectivity_workshop_ossm_kiali_channel: stable
+ocp4_workload_app_connectivity_workshop_ossm_kiali_startingcsv: ""
+ocp4_workload_app_connectivity_workshop_ossm_kiali_deployment: kiali-operator
+ocp4_workload_app_connectivity_workshop_ossm_kiali_wait_for_deploy: true
+ocp4_workload_app_connectivity_workshop_ossm_kiali_namespace: openshift-operators
+
+# Service Mesh
+ocp4_workload_app_connectivity_workshop_ossm_servicemesh_channel: stable
+ocp4_workload_app_connectivity_workshop_ossm_servicemesh_startingcsv: ""
+
+ocp4_workload_app_connectivity_workshop_opentelemetry_product_wait_for_deploy: true
+ocp4_workload_app_connectivity_workshop_tempo_product_wait_for_deploy: true
+
+
+ocp4_workload_app_connectivity_workshop_opentelemetry_gitops_repo_path: platform/open-telemetry
+
+ocp4_workload_app_connectivity_workshop_tempo_gitops_repo_path: platform/tempo
+
+
+ocp4_workload_app_connectivity_workshop_rhsi_gitops_repo_path: platform/rhsi
+
+ocp4_workload_app_connectivity_workshop_travel_portal_gitops_repo_path: developer/travel_portal
+ocp4_workload_app_connectivity_workshop_travel_control_gitops_repo_path: developer/travel_control
+ocp4_workload_app_connectivity_workshop_travel_agency_gitops_repo_path: developer/travel_agency

@@ -1,0 +1,6 @@
+---
+
+- name: Setup Kiali
+  kubernetes.core.k8s:
+    state: present
+    definition: "{{ lookup('template', 'kiali_application.yaml.j2') | from_yaml }}"
